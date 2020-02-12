@@ -1,0 +1,4 @@
+node_modules/*
+start.sh
+package-lock.json
+test.js
