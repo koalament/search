@@ -123,4 +123,4 @@ app.get("/search/:q", (req, res) => {
   })
 })
 
-app.listen(parseInt(process.env.EXPRESS_PORT));
+app.listen(parseInt(process.env.EXPRESS_PORT), "0.0.0.0");
