@@ -4,9 +4,10 @@ const bitcoin = require('bitcoinjs-lib');
 const elasticsearch = require("elasticsearch");
 const express = require("express");
 const elasticClient = new elasticsearch.Client({ host: process.env.ELASTICSEARCH_HOST });
-const async = require("async");
 const supported_layers = ["1"];
-
+const layers = {
+  layer1: require("koalament-layers").layer1
+}
 
 const app = express();
 
@@ -55,7 +56,7 @@ function decodeKoalamentTransaction(hex, callback) {
     return;
   }
   const remained = splitted.join(" ");
-  require(`./layers/${layer}`).decode(remained, (err, res) => {
+  layers[`layer${layer}`].decode(remained, (err, res) => {
     if (err) {
       console.log(err);
       callback(err);
